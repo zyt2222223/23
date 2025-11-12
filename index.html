@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>曾雅婷個人履歷</title>
+  <style>
+    :root {
+      --sidebar-bg: #5d5c8d;
+      --main-color: #5A6293;
+      --light-bg: #EAEBF2;
+      --white: #ffffff;
+      --text-dark: #333333;
+      --text-light: #f0f0f0;
+      --section-bg: #f8f9fc;
+      --purple-dark: #6A5ACD;
+      --purple-light: #A79FE8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+    }
+
+    body {
+      background: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: var(--sidebar-bg);
+      color: var(--text-light);
+      padding: 30px 0 20px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      z-index: 10;
+    }
+
+    .menu-list {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+    }
+
+    .menu-list li a {
+      display: block;
+      padding: 15px 20px 15px 40px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      color: var(--text-light);
+      text-decoration: none;
+    }
+
+    .menu-list li a:hover,
+    .menu-list li a.active {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .main-content {
+      background: var(--light-bg);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-left: 250px;
+    }
+
+    .main-content section {
+      background-color: var(--section-bg);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .profile-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .avatar-upload {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-image: url('picture/head.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
+    .info-detail strong {
+      display: inline-block;
+      width: 60px;
+      color: var(--main-color);
+    }
+
+    .swot-image-container {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--light-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .swot-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .interest-gallery {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .interest-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100px;
+      text-align: center;
+    }
+
+    .interest-item img {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-bottom: 5px;
+      background-color: #B0D0DA;
+    }
+
+    .skills-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--main-color);
+      margin-bottom: 20px;
+      border-left: 5px solid var(--main-color);
+      padding-left: 10px;
+    }
+
+    .skill-list {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--purple-dark) 0%,
+        var(--purple-light) calc(var(--percent) * 1%),
+        var(--light-bg) calc(var(--percent) * 1%)
+      );
+    }
+
+    .radar-chart-container {
+      width: 100%;
+      max-width: 450px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .project-section {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      text-align: center;
+    }
+
+    .project-card {
+      background: var(--white);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .project-img {
+      width: 100%;
+      height: 200px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      margin-bottom: 15px;
+    }
+
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      text-align: left;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .link-btn {
+      background: var(--light-bg);
+      color: var(--text-dark);
+      border: none;
+      padding: 10px 25px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .link-btn:hover {
+      background: var(--main-color);
+      color: var(--white);
+    }
+
+    .project-title {
+      display: block;
+      text-align: center;
+      font-weight: bold;
+      color: #003366;
+      margin-bottom: 10px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      align-items: flex-end;
+      margin-top: 20px;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--light-bg);
+    }
+
+    .large-image-placeholder img {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    @media (max-width: 1400px) {
+      .project-section {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .profile-section {
+        grid-template-columns: 1fr;
+      }
+      .project-section {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100%;
+        position: static;
+        height: auto;
+      }
+      .main-content {
+        margin-left: 0;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .project-section {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <img src="picture/line.png" alt="Line 圖示" style="width: 30px; height: 30px; margin-bottom: 30px; border-radius: 6px;">
+      <ul class="menu-list">
+        <li><a href="#profile">個人基本資訊</a></li>
+        <li><a href="#skills">個人專業與技能</a></li>
+        <li><a href="#projects">個人經歷</a></li>
+        <li><a href="#contact">聯絡資訊</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <section class="profile-section" id="profile">
+        <div class="profile-left">
+          <div class="avatar-upload"></div>
+          <div class="profile-info">
+            <div class="info-detail"><strong>姓名：</strong><span>曾雅婷</span></div>
+            <div class="info-detail"><strong>標語：</strong><span>滿懷希望，所向披靡</span></div>
+            <div class="info-detail">
+              <strong>自介：</strong>
+              <p>我是一個積極負責、細心謹慎的人，具備創意思維與強烈好奇心，善於分析問題並提出創新解決方案。同時，我注重目標與效率，能在有限時間內完成高品質工作，並具備良好的團隊合作與溝通能力，能有效協調資源推動專案進行。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-right">
+          <div class="swot-image-container">
+            <img src="picture/swot.png" alt="SWOT 分析圖">
+          </div>
+
+          <div>
+            <h4 style="margin-top: 0; color: var(--main-color);">興趣</h4>
+            <div class="interest-gallery">
+              <div class="interest-item">
+                <img src="picture/ra.png" alt="建模">
+                <p>建模</p>
+              </div>
+              <div class="interest-item">
+                <img src="picture/draw.png" alt="繪圖">
+                <p>繪圖</p>
+              </div>
+              <div class="interest-item">
+                <img src="picture/book.png" alt="閱讀">
+                <p>閱讀</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="skills-section" id="skills">
+        <div class="skills-title">專業技能</div>
+        <div class="skill-list">
+          <div class="skill-item"><div class="skill-circle" style="--percent: 90;"></div><span>Python</span></div>
+          <div class="skill-item"><div class="skill-circle" style="--percent: 89;"></div><span>Java</span></div>
+          <div class="skill-item"><div class="skill-circle" style="--percent: 78;"></div><span>C++</span></div>
+          <div class="skill-item"><div class="skill-circle" style="--percent: 95;"></div><span>設計能力</span></div>
+        </div>
+        <div class="radar-chart-container">
+          <img src="picture/leda.png" alt="雷達圖" style="max-width: 100%; border-radius: 12px;">
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="skills-title">個人經歷</div>
+        <div class="project-section">
+          <div class="project-card">
+            <div class="project-img">
+              <img src="picture/kid.png" alt="課程活動">
+            </div>
+            <div>
+              <strong class="project-title">課程活動-中壢五權親子館</strong>
+              <p class="project-desc">在管理學志工體驗課程中，我們參與了中壢五權親子館舉辦的「兒童發展篩檢機制與居家安全的重要性」活動。我主要負責協助闖關活動的進行，並擔任遊戲關主，面對年齡從五個月到八歲的孩童及其父母，提供關卡說明與引導教學。在活動過程中，我學習到如何觀察孩子的成長與肢體協調能力，並掌握在摺紙、堆積木等不同遊戲關卡中，如何與不同年齡層的孩子進行適當互動。同時，我也協助孩童理解居家安全的重要性，並透過實際操作提升他們的安全意識。這次志工體驗不僅讓我累積了與孩子互動的經驗，也培養了我的責任心，以及面對突發狀況時的應變能力，對個人能力提升有很大的幫助。
+                </p>
+              <a href="aaa111.html" class="link-btn">影片</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-img">
+              <img src="picture/tao.png" alt="專案">
+            </div>
+            <div>
+              <strong class="project-title">專案-你這個小桃企</strong>
+              <p class="project-desc">在企業概論課的專案計畫中，我們設計了一個桃園旅行社，而我主要負責社群經營與管理的工作。我的任務包括面對主要消費者、進行廣告行銷與產品推廣，以及提升公司在網路上的曝光與影響力。為了達成這些目標，我分析了受眾的年齡層與需求，並結合桃園當地的旅遊景點與美食，將相關內容發布在 Threads 上，與潛在客戶進行互動。在短短一個學期內，我們的社群經營取得了明顯成效。此外，在專案過程中，我也親身經歷了公司之間處理規範與正式手續的流程，這讓我學會如何快速且有效率地分析市場與規劃產品，並提升了我在實務操作與策略規劃方面的能力。
+              </p>
+              <button class="link-btn" onclick="window.location.href='https://www.threads.com/@tyfun.1day?igshid=NTc4MTIwNjQ2YQ=='">
+                    帳號
+              </button>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-img">
+              <img src="picture/draw.png" alt="工作經歷">
+            </div>
+            <div>
+              <strong class="project-title">工作經歷-繪圖委託</strong>
+              <p class="project-desc">當我在高中時期將繪圖技術鑽研到一定程度後，開始在網路上接案進行繪圖委託，並以此作為生活開支的來源。這段經驗讓我深刻體會到，將興趣結合工作不僅能帶來成就感，也能促使自己持續進步。透過繪圖，我培養了對美感與設計的敏銳度，這對我在網頁設計領域的發展也有很大幫助。在多年的接案過程中，我學會如何有效引導並理解顧客需求，培養出良好的溝通與協調能力。同時，面對不同的客戶與專案，我也學習了如何管理時間與金錢，讓整個創作流程更加專業與高效。這些經驗不僅豐富了我的繪圖技巧，也為我未來在設計與管理領域奠定了穩固的基礎。</p>
+              <a href="bbb222.html" class="link-btn">作品</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="skills-title">聯絡資訊</div>
+        <div class="contact-grid">
+          <div class="contact-list">
+            <div class="contact-item">
+              <div class="contact-icon"></div>
+              <div>
+                <h4>IG</h4>
+                <p>xxx_xxx</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"></div>
+              <div>
+                <h4>FB</h4>
+                <p>https://reurl.cc/xxxxxx</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"></div>
+              <div>
+                <h4>Gmail</h4>
+                <p>s11344223@cycu.org.tw</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"></div>
+              <div>
+                <h4>Tel</h4>
+                <p>0905xxxxxx</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="large-image-placeholder">
+            <img src="picture/me.png" alt="聯絡資訊大圖">
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
